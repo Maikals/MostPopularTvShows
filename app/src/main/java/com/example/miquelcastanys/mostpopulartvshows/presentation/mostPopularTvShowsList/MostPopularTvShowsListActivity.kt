@@ -3,6 +3,7 @@ package com.example.miquelcastanys.mostpopulartvshows.presentation.mostPopularTv
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.example.miquelcastanys.mostpopulartvshows.R
+import com.example.miquelcastanys.mostpopulartvshows.domain.source.MostPopularTvShowsSourceImpl
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_most_popular_tv_shows_list.*
 
@@ -39,7 +40,13 @@ class MostPopularTvShowsListActivity : BaseActivity() {
     }
 
     private fun createFragment() {
-        //TODO add MostPopularTvShowsListFragment
+        currentFragment = MostPopularTvShowsListFragment.newInstance()
+        val mostPopularTvShowsListPresenter = MostPopularTvShowsListPresenter()
+        mostPopularTvShowsListPresenter.attach(this,
+                currentFragment as MostPopularTvShowsListFragment,
+                MostPopularTvShowsSourceImpl())
+        (currentFragment as MostPopularTvShowsListFragment).setPresenter(mostPopularTvShowsListPresenter)
+        currentTag = MostPopularTvShowsListFragment.TAG
     }
 
     private fun setFragment() =
