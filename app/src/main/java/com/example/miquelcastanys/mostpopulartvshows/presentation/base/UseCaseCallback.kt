@@ -1,6 +1,6 @@
 package com.example.miquelcastanys.mostpopulartvshows.presentation.base
 
-interface UseCase <in T>  {
+interface UseCaseCallback<in T>  {
     fun onSuccess(item: T)
     fun onError(code: Int)
 }
