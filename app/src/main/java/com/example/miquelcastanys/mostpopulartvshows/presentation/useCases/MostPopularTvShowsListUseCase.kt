@@ -42,14 +42,11 @@ class MostPopularTvShowsListUseCase(val repository: MostPopularTvShowsSourceImpl
                 language,
                 page,
                 object : MostPopularTvShowsSource.GetMostPopularTvShowsListCallback {
-                    override fun onSuccess(mostPopularTvShowListResponse: MostPopularTvShowListResponse) {
-                        callback.onSuccess(mostPopularTvShowListResponse)
-                    }
+                    override fun onSuccess(mostPopularTvShowListResponse: MostPopularTvShowListResponse) =
+                            callback.onSuccess(mostPopularTvShowListResponse)
 
-                    override fun onFailure(errorCode: Int) {
+                    override fun onFailure(errorCode: Int) =
                         callback.onError(errorCode)
-                    }
-
                 })
     }
 }
