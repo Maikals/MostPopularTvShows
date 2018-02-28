@@ -18,7 +18,7 @@ class MostPopularTvShowsListPresenter(override var isLastPage: Boolean = false) 
     private var currentPage = 1
 
     override fun start() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        getMostPopularTvShowsList()
     }
 
     override fun attach(context: Context, view: MostPopularTvShowsListContract.View, repository: MostPopularTvShowsSourceImpl) {
