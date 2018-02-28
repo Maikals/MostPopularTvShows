@@ -13,7 +13,7 @@ interface MostPopularTvShowsListContract {
     }
 
     interface Presenter : BasePresenter<Context, View> {
-        fun getMostPopularTvShowsLis()
+        fun getMostPopularTvShowsList()
         fun openTvShowDetail(position: Int)
         var isLastPage: Boolean
     }
