@@ -13,7 +13,7 @@ object MostPopularTvShowsListMapper {
         val tvShowList = ArrayList<BaseListItem>()
         results.forEach {
             tvShowList.add(TvShowListItem(it.id ?: 0, it.name ?: "", it.vote_average
-                    ?: 0.0, it.poster_path ?: ""))
+                    ?: 0.0, it.backdrop_path ?: ""))
         }
         return tvShowList
     }
