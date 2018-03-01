@@ -28,9 +28,9 @@ class MostPopularTvShowsListFragment : BaseFragment(), MostPopularTvShowsListCon
             if (dy > 0) {
                 val visibleItemCount = linearLayoutManager.childCount
                 val totalItemCount = linearLayoutManager.itemCount
-                val pastVisiblesItems = linearLayoutManager.findFirstVisibleItemPosition()
+                val pastVisibleItems = linearLayoutManager.findFirstVisibleItemPosition()
                 if (!presenter?.isLastPage!! && !loading) {
-                    if (visibleItemCount + pastVisiblesItems >= totalItemCount) {
+                    if (visibleItemCount + pastVisibleItems >= totalItemCount - 3) {
                         loading = true
                         presenter?.getMostPopularTvShowsList()
                     }
@@ -64,6 +64,7 @@ class MostPopularTvShowsListFragment : BaseFragment(), MostPopularTvShowsListCon
 
     private fun setRefreshLayoutBehaviour() {
         mostPopularTvShowsListRefreshLayout.setOnRefreshListener {
+            (mostPopularTvShowsListRV.adapter as? MostPopularTvShowsListAdapter)?.restartLastPosition()
             presenter?.start()
         }
     }
@@ -71,6 +72,7 @@ class MostPopularTvShowsListFragment : BaseFragment(), MostPopularTvShowsListCon
     private fun setRecyclerView() {
         mostPopularTvShowsListRV.layoutManager = linearLayoutManager
         mostPopularTvShowsListRV.addOnScrollListener(onScrollListener)
+
     }
 
     override fun setPresenter(presenter: MostPopularTvShowsListContract.Presenter) {
