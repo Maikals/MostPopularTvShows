@@ -10,5 +10,6 @@ class TvShowViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
     fun bindView(tvShowListItem: TvShowListItem) {
         view.tvShowTitle.text = tvShowListItem.title
+        view.tvShowRating.text = "Rating: ${tvShowListItem.voteAverage}"
     }
 }
