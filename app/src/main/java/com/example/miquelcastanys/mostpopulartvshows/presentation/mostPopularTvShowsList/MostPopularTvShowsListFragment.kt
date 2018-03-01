@@ -101,8 +101,12 @@ class MostPopularTvShowsListFragment : BaseFragment(), MostPopularTvShowsListCon
         Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
     }
 
-    override fun onDetach() {
+    override fun onDestroyView() {
+        super.onDestroyView()
         mostPopularTvShowsListRV.removeOnScrollListener(onScrollListener)
+    }
+
+    override fun onDetach() {
         presenter?.detach()
         super.onDetach()
     }
