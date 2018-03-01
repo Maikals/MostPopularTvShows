@@ -1,5 +1,6 @@
 package com.example.miquelcastanys.mostpopulartvshows.domain.source
 
+import com.example.miquelcastanys.mostpopulartvshows.BuildConfig
 import com.example.miquelcastanys.mostpopulartvshows.domain.api.MostPopularTvShowsService
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.MostPopularTvShowListResponse
 import retrofit2.Call
@@ -11,13 +12,17 @@ class MostPopularTvShowsSourceImpl : MostPopularTvShowsSource {
                                            language: String,
                                            page: Int,
                                            callback: MostPopularTvShowsSource.GetMostPopularTvShowsListCallback) {
+
         val mostPopularTvShowsList = MostPopularTvShowsService.getService().getMostPopularTvShowsList(apiKey, language, page)
+        if (BuildConfig.DEBUG) println("URL -> " + mostPopularTvShowsList.request().url())
         mostPopularTvShowsList.enqueue(object : Callback<MostPopularTvShowListResponse> {
 
             override fun onResponse(call: Call<MostPopularTvShowListResponse>?,
                                     response: Response<MostPopularTvShowListResponse>?) {
-                if (response?.code() == 200)
+                if (response?.code() == 200) {
+//                    if (BuildConfig.DEBUG) println("Body -> " + response.body())
                     callback.onSuccess(response.body()!!)
+                }
                 else
                     callback.onFailure(response?.code() ?: 500)
             }
