@@ -30,7 +30,7 @@ class MostPopularTvShowsListFragment : BaseFragment(), MostPopularTvShowsListCon
                 val totalItemCount = linearLayoutManager.itemCount
                 val pastVisibleItems = linearLayoutManager.findFirstVisibleItemPosition()
                 if (!presenter?.isLastPage!! && !loading) {
-                    if (visibleItemCount + pastVisibleItems >= totalItemCount - 3) {
+                    if (visibleItemCount + pastVisibleItems >= totalItemCount - 5) {
                         loading = true
                         presenter?.getMostPopularTvShowsList()
                     }
