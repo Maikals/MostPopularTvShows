@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Most Popular Tv Shows</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_empty_view_title">Something went wrong</string>
+    <string name="error_empty_view_description">Oh no! The most popular shows cannot be fetch!</string>
+    <string name="no_elements_emtpy_view_title">Most popular tv shows</string>
+    <string name="no_elements_emtpy_view_description">Here will appear the most popular tv shows</string>
 </resources>
