@@ -49,4 +49,24 @@ class MostPopularTvShowsSourceImpl : MostPopularTvShowsSource {
         })
 
     }
+
+    override fun getSimilarTvShowsList(id: Int, apiKey: String, language: String, page: Int, callback: MostPopularTvShowsSource.GetSimilarTvShowsListCallback) {
+        val mostPopularTvShowsList = MostPopularTvShowsService.getService().getSimilarTvShowsList(id, apiKey, language, page)
+        if (BuildConfig.DEBUG) println("URL -> " + mostPopularTvShowsList.request().url())
+        mostPopularTvShowsList.enqueue(object : Callback<TvShowListResponse> {
+
+            override fun onResponse(call: Call<TvShowListResponse>?,
+                                    response: Response<TvShowListResponse>?) {
+                if (response?.code() == 200) {
+                    callback.onSuccess(response.body()!!)
+                } else
+                    callback.onFailure(response?.code() ?: 500)
+            }
+
+            override fun onFailure(call: Call<TvShowListResponse>?, t: Throwable?) {
+                callback.onFailure(500)
+            }
+
+        })
+    }
 }

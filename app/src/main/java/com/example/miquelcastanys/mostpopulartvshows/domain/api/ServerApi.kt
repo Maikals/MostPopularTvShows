@@ -17,4 +17,10 @@ interface ServerApi {
     fun getTvShowDetail(@Path("tvShowId") tvShowId: Int,
                         @Query("api_key") apiKey: String,
                         @Query("language") language: String): Call<TvShowDetailResponse>
+
+    @GET("tv/{tvShowId}/similar")
+    fun getSimilarTvShowsList(@Path("tvShowId") tvShowId: Int,
+                              @Query("api_key") apiKey: String,
+                              @Query("language") language: String,
+                              @Query("page") page: Int): Call<TvShowListResponse>
 }
