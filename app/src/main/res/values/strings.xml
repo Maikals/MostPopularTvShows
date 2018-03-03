@@ -6,4 +6,5 @@
     <string name="no_elements_emtpy_view_title">Most popular tv shows</string>
     <string name="no_elements_emtpy_view_description">Here will appear the most popular tv shows</string>
     <string name="transition_string">hello</string>
+
 </resources>

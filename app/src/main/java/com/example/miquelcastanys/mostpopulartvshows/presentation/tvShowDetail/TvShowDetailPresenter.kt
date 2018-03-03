@@ -27,7 +27,9 @@ class TvShowDetailPresenter(val id: Int) : TvShowDetailContract.Presenter {
     }
 
     override fun detach() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        context?.clear()
+        view?.clear()
+        repository = null
     }
 
     override fun getTvShowDetail() {
@@ -38,10 +40,12 @@ class TvShowDetailPresenter(val id: Int) : TvShowDetailContract.Presenter {
                 object : UseCaseCallback<TvShowDetailResponse> {
                     override fun onSuccess(item: TvShowDetailResponse) {
                         view?.get()?.getTvShowDetailOk(TvShowDetailMapper.turnInto(item))
+                        view?.get()?.showProgressBar(false)
                     }
 
                     override fun onError(code: Int) {
                         view?.get()?.getTvShowDetailKo(code.toString())
+                        view?.get()?.showProgressBar(false)
                     }
                 })}
     }
