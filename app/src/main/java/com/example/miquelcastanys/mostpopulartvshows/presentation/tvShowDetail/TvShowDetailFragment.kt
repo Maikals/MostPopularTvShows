@@ -2,32 +2,34 @@ package com.example.miquelcastanys.mostpopulartvshows.presentation.tvShowDetail
 
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-
 import com.example.miquelcastanys.mostpopulartvshows.R
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseFragment
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseListItem
+import com.example.miquelcastanys.mostpopulartvshows.presentation.control.adapter.SimilarTvShowsListAdapter
+import com.example.miquelcastanys.mostpopulartvshows.presentation.interfaces.OnListItemClickListener
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowDetail
-import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowListItem
 import kotlinx.android.synthetic.main.fragment_tv_show_detail.*
 
 
-/**
- * A simple [Fragment] subclass.
- */
-class TvShowDetailFragment : BaseFragment(), TvShowDetailContract.View {
-
+class TvShowDetailFragment : BaseFragment(),
+        TvShowDetailContract.View, OnListItemClickListener.View {
 
     private var presenter: TvShowDetailContract.Presenter? = null
+    private var similarTvShowsListAdapter: SimilarTvShowsListAdapter? = null
+    private val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(context,
+            LinearLayoutManager.HORIZONTAL,
+            false)
+
     companion object {
         const val TAG = "TvShowDetailFragment"
         private const val TV_SHOW_DETAIL_ID_EXTRA = "tvShowDetailIdExtra"
         private const val TV_SHOW_DETAIL_OVERVIEW_EXTRA = "tvShowDetailOverviewExtra"
-        fun newInstance(id: Int, overview: String) : TvShowDetailFragment {
+        fun newInstance(id: Int, overview: String): TvShowDetailFragment {
             val tvShowDetailFragment = TvShowDetailFragment()
             val arguments = Bundle()
             arguments.putInt(TV_SHOW_DETAIL_ID_EXTRA, id)
@@ -47,6 +49,11 @@ class TvShowDetailFragment : BaseFragment(), TvShowDetailContract.View {
         super.onViewCreated(view, savedInstanceState)
         overview.text = arguments.getString(TV_SHOW_DETAIL_OVERVIEW_EXTRA)
         presenter?.start()
+        setRecyclerView()
+    }
+
+    private fun setRecyclerView() {
+        similarTvShowListRV.layoutManager = linearLayoutManager
     }
 
     override fun setPresenter(presenter: TvShowDetailContract.Presenter) {
@@ -69,10 +76,17 @@ class TvShowDetailFragment : BaseFragment(), TvShowDetailContract.View {
     }
 
     override fun getSimilarTvShowsListOk(tvShowList: List<BaseListItem>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if (similarTvShowsListAdapter == null) {
+            similarTvShowsListAdapter = SimilarTvShowsListAdapter(tvShowList, this)
+            similarTvShowListRV.adapter = similarTvShowsListAdapter
+        }
+        similarTvShowsListAdapter?.notifyDataSetChanged()
     }
 
     override fun getSimilarTvShowListKo(errorCode: String) {
+    }
+
+    override fun onItemClick(position: Int, view: View) {
     }
 
 }

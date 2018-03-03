@@ -17,7 +17,7 @@ class SimilarTvShowsListAdapter(tvShowList: List<BaseListItem>
     : BaseTvShowListAdapter(tvShowList, listener) {
     override fun createFooterViewHolder(parent: ViewGroup?): BaseFooterViewHolder =
             FooterViewHolder(LayoutInflater.from(parent?.context)
-                    .inflate(R.layout.footer_list_item, parent, false))
+                    .inflate(R.layout.similar_tv_show_last_item, parent, false))
 
 
     override fun createTvShowViewHolder(parent: ViewGroup?): BaseTvShowViewHolder =
