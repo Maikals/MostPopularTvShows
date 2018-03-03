@@ -10,7 +10,7 @@ import com.example.miquelcastanys.mostpopulartvshows.R
 import com.example.miquelcastanys.mostpopulartvshows.domain.source.MostPopularTvShowsSourceImpl
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseListItem
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.UseCaseCallback
-import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.MostPopularTvShowListResponse
+import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.TvShowListResponse
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.mappers.MostPopularTvShowsListMapper
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.FooterListItem
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowListItem
@@ -51,8 +51,8 @@ class MostPopularTvShowsListPresenter(override var isLastPage: Boolean = false) 
                     .getAsync("98d3f21f52adf59ccbf65cb76683d73b",
                             "en-US",
                             currentPage++,
-                            object : UseCaseCallback<MostPopularTvShowListResponse> {
-                                override fun onSuccess(item: MostPopularTvShowListResponse) {
+                            object : UseCaseCallback<TvShowListResponse> {
+                                override fun onSuccess(item: TvShowListResponse) {
                                     manageResult(item)
                                     view?.get()?.showProgressBar(false)
                                 }
@@ -67,7 +67,7 @@ class MostPopularTvShowsListPresenter(override var isLastPage: Boolean = false) 
         }
     }
 
-    private fun manageResult(item: MostPopularTvShowListResponse) {
+    private fun manageResult(item: TvShowListResponse) {
         removeFooter()
         setIsLastPage(item.page, item.total_pages)
         addResultToMostPopularTvShowList(MostPopularTvShowsListMapper.turnInto(item))

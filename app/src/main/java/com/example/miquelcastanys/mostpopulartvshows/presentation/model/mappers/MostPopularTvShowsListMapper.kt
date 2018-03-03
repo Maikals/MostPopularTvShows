@@ -1,13 +1,13 @@
 package com.example.miquelcastanys.mostpopulartvshows.presentation.model.mappers
 
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseListItem
-import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.MostPopularTvShowListResponse
+import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.TvShowListResponse
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.TvShowResponse
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowListItem
 
 object MostPopularTvShowsListMapper {
-    fun turnInto(mostPopularTvShowListResponse: MostPopularTvShowListResponse): ArrayList<BaseListItem> =
-            createTvShowList(mostPopularTvShowListResponse.results)
+    fun turnInto(tvShowListResponse: TvShowListResponse): ArrayList<BaseListItem> =
+            createTvShowList(tvShowListResponse.results)
 
     private fun createTvShowList(results: List<TvShowResponse>): ArrayList<BaseListItem> {
         val tvShowList = ArrayList<BaseListItem>()

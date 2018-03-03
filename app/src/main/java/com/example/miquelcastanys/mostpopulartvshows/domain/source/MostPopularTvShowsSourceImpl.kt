@@ -2,7 +2,7 @@ package com.example.miquelcastanys.mostpopulartvshows.domain.source
 
 import com.example.miquelcastanys.mostpopulartvshows.BuildConfig
 import com.example.miquelcastanys.mostpopulartvshows.domain.api.MostPopularTvShowsService
-import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.MostPopularTvShowListResponse
+import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.TvShowListResponse
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.TvShowDetailResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,17 +16,17 @@ class MostPopularTvShowsSourceImpl : MostPopularTvShowsSource {
 
         val mostPopularTvShowsList = MostPopularTvShowsService.getService().getMostPopularTvShowsList(apiKey, language, page)
         if (BuildConfig.DEBUG) println("URL -> " + mostPopularTvShowsList.request().url())
-        mostPopularTvShowsList.enqueue(object : Callback<MostPopularTvShowListResponse> {
+        mostPopularTvShowsList.enqueue(object : Callback<TvShowListResponse> {
 
-            override fun onResponse(call: Call<MostPopularTvShowListResponse>?,
-                                    response: Response<MostPopularTvShowListResponse>?) {
+            override fun onResponse(call: Call<TvShowListResponse>?,
+                                    response: Response<TvShowListResponse>?) {
                 if (response?.code() == 200) {
                     callback.onSuccess(response.body()!!)
                 } else
                     callback.onFailure(response?.code() ?: 500)
             }
 
-            override fun onFailure(call: Call<MostPopularTvShowListResponse>?, t: Throwable?) {
+            override fun onFailure(call: Call<TvShowListResponse>?, t: Throwable?) {
                 callback.onFailure(500)
             }
 

@@ -1,12 +1,12 @@
 package com.example.miquelcastanys.mostpopulartvshows.domain.source
 
-import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.MostPopularTvShowListResponse
+import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.TvShowListResponse
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.TvShowDetailResponse
 
 
 interface MostPopularTvShowsSource {
     interface GetMostPopularTvShowsListCallback {
-        fun onSuccess(mostPopularTvShowListResponse: MostPopularTvShowListResponse)
+        fun onSuccess(tvShowListResponse: TvShowListResponse)
         fun onFailure(errorCode: Int)
     }
     interface GetTvShowDetailCallback{
