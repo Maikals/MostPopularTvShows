@@ -12,10 +12,11 @@ import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseFragm
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseListItem
 import com.example.miquelcastanys.mostpopulartvshows.presentation.control.adapter.MostPopularTvShowsListAdapter
 import com.example.miquelcastanys.mostpopulartvshows.presentation.enumeration.EmptyViewModel
+import com.example.miquelcastanys.mostpopulartvshows.presentation.interfaces.OnListItemClickListener
 import kotlinx.android.synthetic.main.fragment_most_popular_tv_shows_list.*
 
 
-class MostPopularTvShowsListFragment : BaseFragment(), MostPopularTvShowsListContract.View {
+class MostPopularTvShowsListFragment : BaseFragment(), MostPopularTvShowsListContract.View, OnListItemClickListener.View {
 
     private var presenter: MostPopularTvShowsListContract.Presenter? = null
     private val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(context,
@@ -110,7 +111,7 @@ class MostPopularTvShowsListFragment : BaseFragment(), MostPopularTvShowsListCon
 
     private fun initializeRecyclerViewAdapter(tvShowsList: List<BaseListItem>) {
         if (mostPopularTvShowsListAdapter == null) {
-            mostPopularTvShowsListAdapter = MostPopularTvShowsListAdapter(tvShowsList)
+            mostPopularTvShowsListAdapter = MostPopularTvShowsListAdapter(tvShowsList, this)
             mostPopularTvShowsListRV.adapter = mostPopularTvShowsListAdapter
         }
     }
@@ -151,6 +152,10 @@ class MostPopularTvShowsListFragment : BaseFragment(), MostPopularTvShowsListCon
     override fun onDetach() {
         presenter?.detach()
         super.onDetach()
+    }
+
+    override fun onItemClick(position: Int, view: View) {
+        presenter?.openTvShowDetail(position, view)
     }
 
 }

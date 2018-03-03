@@ -1,12 +1,20 @@
 package com.example.miquelcastanys.mostpopulartvshows.presentation.mostPopularTvShowsList
 
 import android.content.Context
+import android.content.Intent
+import android.support.v4.app.ActivityCompat
+import android.support.v4.app.ActivityOptionsCompat
+import android.support.v7.app.AppCompatActivity
+import android.view.View
+import com.example.miquelcastanys.mostpopulartvshows.R
 import com.example.miquelcastanys.mostpopulartvshows.domain.source.MostPopularTvShowsSourceImpl
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseListItem
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.UseCaseCallback
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.MostPopularTvShowListResponse
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.mappers.MostPopularTvShowsListMapper
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.FooterListItem
+import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowListItem
+import com.example.miquelcastanys.mostpopulartvshows.presentation.tvShowDetail.TvShowDetailActivity
 import com.example.miquelcastanys.mostpopulartvshows.presentation.useCases.MostPopularTvShowsListUseCase
 import java.lang.ref.WeakReference
 
@@ -83,7 +91,19 @@ class MostPopularTvShowsListPresenter(override var isLastPage: Boolean = false) 
         tvShowsList.removeAll { it is FooterListItem }
     }
 
-    override fun openTvShowDetail(position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun openTvShowDetail(position: Int, view: View) {
+        val transitionName = context?.get()?.getString(R.string.transition_string)
+        val options =
+                ActivityOptionsCompat.makeSceneTransitionAnimation((context?.get()!! as? AppCompatActivity),
+                        view, // Starting view
+                        transitionName    // The String
+                )
+        val intent = Intent(context?.get()!!, TvShowDetailActivity::class.java)
+        val tvShowListItem = tvShowsList[position] as? TvShowListItem
+        intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_BIG_IMAGE_EXTRA, tvShowListItem?.image)
+        intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_TITLE_EXTRA, tvShowListItem?.title)
+        intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_ID_EXTRA, tvShowListItem?.id)
+        intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_OVERVIEW_EXTRA, tvShowListItem?.overview)
+        ActivityCompat.startActivity(context?.get()!!, intent, options.toBundle())
     }
 }

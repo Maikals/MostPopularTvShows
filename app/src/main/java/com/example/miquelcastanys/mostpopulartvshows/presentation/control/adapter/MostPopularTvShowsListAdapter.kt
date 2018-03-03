@@ -10,11 +10,14 @@ import com.example.miquelcastanys.mostpopulartvshows.presentation.genericHolders
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowListItem
 import com.example.miquelcastanys.mostpopulartvshows.presentation.mostPopularTvShowsList.TvShowViewHolder
 import android.view.animation.AnimationUtils
+import com.example.miquelcastanys.mostpopulartvshows.presentation.interfaces.OnListItemClickListener
 
 
+class MostPopularTvShowsListAdapter(private val tvShowList: List<BaseListItem>,
+                                    val listener: OnListItemClickListener.View) :
+        RecyclerView.Adapter<RecyclerView.ViewHolder>(),
+        OnListItemClickListener.Adapter{
 
-
-class MostPopularTvShowsListAdapter(private val tvShowList: List<BaseListItem>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var lastPosition: Int = -1
 
     companion object {
@@ -25,7 +28,7 @@ class MostPopularTvShowsListAdapter(private val tvShowList: List<BaseListItem>) 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder =
             when (viewType) {
                 TV_SHOW_TYPE -> TvShowViewHolder(LayoutInflater.from(parent?.context)
-                        .inflate(R.layout.tv_show_list_item, parent, false))
+                        .inflate(R.layout.tv_show_list_item, parent, false), this)
                 else -> FooterViewHolder(LayoutInflater.from(parent?.context)
                         .inflate(R.layout.footer_list_item, parent, false))
             }
@@ -55,5 +58,9 @@ class MostPopularTvShowsListAdapter(private val tvShowList: List<BaseListItem>) 
             viewToAnimate.startAnimation(animation)
             lastPosition = position
         }
+    }
+
+    override fun onItemClick(position: Int, view: View) {
+        listener.onItemClick(position, view)
     }
 }

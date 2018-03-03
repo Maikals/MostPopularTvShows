@@ -18,6 +18,7 @@
             android:id="@+id/img_gallery"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:transitionName="@string/transition_string"
             android:background="@android:color/darker_gray"
             tools:src="@drawable/ic_action_name" />
 
@@ -26,9 +27,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:padding="8dp"
             android:background="@drawable/shape_foreground_profile"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="8dp">
 
             <TextView
                 android:id="@+id/tvShowTitle"

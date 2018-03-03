@@ -3,13 +3,14 @@ package com.example.miquelcastanys.mostpopulartvshows.presentation.mostPopularTv
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.example.miquelcastanys.mostpopulartvshows.R
-import com.example.miquelcastanys.mostpopulartvshows.domain.DomainConstants
 import com.example.miquelcastanys.mostpopulartvshows.presentation.glideModule.GlideApp
+import com.example.miquelcastanys.mostpopulartvshows.presentation.interfaces.OnListItemClickListener
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowListItem
 import kotlinx.android.synthetic.main.tv_show_list_item.view.*
 
 
-class TvShowViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+class TvShowViewHolder(val view: View,
+                       private val listener: OnListItemClickListener.Adapter) : RecyclerView.ViewHolder(view) {
 
     fun bindView(tvShowListItem: TvShowListItem) {
         view.tvShowTitle.text = tvShowListItem.title
@@ -20,5 +21,6 @@ class TvShowViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
                 .placeholder(R.drawable.ic_action_name)
                 .centerCrop()
                 .into(view.img_gallery)
+        view.setOnClickListener{listener.onItemClick(adapterPosition, view.img_gallery)}
     }
 }
