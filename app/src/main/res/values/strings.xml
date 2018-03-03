@@ -7,5 +7,6 @@
     <string name="no_elements_emtpy_view_description">Here will appear the most popular tv shows</string>
     <string name="transition_string">hello</string>
     <string name="tv_show_detail_error">Something went wrong</string>
+    <string name="rating">Rating:</string>
 
 </resources>

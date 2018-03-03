@@ -5,7 +5,7 @@ import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.T
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.TvShowResponse
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowListItem
 
-object MostPopularTvShowsListMapper {
+object TvShowsListMapper {
     fun turnInto(tvShowListResponse: TvShowListResponse): ArrayList<BaseListItem> =
             createTvShowList(tvShowListResponse.results)
 
@@ -16,7 +16,8 @@ object MostPopularTvShowsListMapper {
                     it.name ?: "",
                     it.vote_average ?: 0.0,
                     it.backdrop_path ?: "",
-                    it.overview ?: ""))
+                    it.overview ?: "",
+                    it.poster_path ?: ""))
         }
         return tvShowList
     }

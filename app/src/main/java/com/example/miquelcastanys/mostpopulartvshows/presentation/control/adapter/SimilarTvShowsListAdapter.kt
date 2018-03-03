@@ -12,16 +12,17 @@ import com.example.miquelcastanys.mostpopulartvshows.presentation.interfaces.OnL
 import com.example.miquelcastanys.mostpopulartvshows.presentation.mostPopularTvShowsList.TvShowViewHolder
 
 
-class MostPopularTvShowsListAdapter(tvShowList: List<BaseListItem>,
-                                    listener: OnListItemClickListener.View) :
-        BaseTvShowListAdapter(tvShowList, listener) {
-
+class SimilarTvShowsListAdapter(tvShowList: List<BaseListItem>
+                                , listener: OnListItemClickListener.View)
+    : BaseTvShowListAdapter(tvShowList, listener) {
     override fun createFooterViewHolder(parent: ViewGroup?): BaseFooterViewHolder =
             FooterViewHolder(LayoutInflater.from(parent?.context)
                     .inflate(R.layout.footer_list_item, parent, false))
 
+
     override fun createTvShowViewHolder(parent: ViewGroup?): BaseTvShowViewHolder =
             TvShowViewHolder(LayoutInflater.from(parent?.context)
-                    .inflate(R.layout.tv_show_list_item, parent, false), this)
+                    .inflate(R.layout.similar_tv_show_list_item, parent, false), this)
+
 
 }

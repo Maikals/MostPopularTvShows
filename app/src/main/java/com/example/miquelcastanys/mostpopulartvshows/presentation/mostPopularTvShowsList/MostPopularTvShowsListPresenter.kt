@@ -11,7 +11,7 @@ import com.example.miquelcastanys.mostpopulartvshows.domain.source.MostPopularTv
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseListItem
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.UseCaseCallback
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.TvShowListResponse
-import com.example.miquelcastanys.mostpopulartvshows.presentation.model.mappers.MostPopularTvShowsListMapper
+import com.example.miquelcastanys.mostpopulartvshows.presentation.model.mappers.TvShowsListMapper
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.FooterListItem
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowListItem
 import com.example.miquelcastanys.mostpopulartvshows.presentation.tvShowDetail.TvShowDetailActivity
@@ -70,7 +70,7 @@ class MostPopularTvShowsListPresenter(override var isLastPage: Boolean = false) 
     private fun manageResult(item: TvShowListResponse) {
         removeFooter()
         setIsLastPage(item.page, item.total_pages)
-        addResultToMostPopularTvShowList(MostPopularTvShowsListMapper.turnInto(item))
+        addResultToMostPopularTvShowList(TvShowsListMapper.turnInto(item))
         if (!isLastPage) addFooter()
         view?.get()?.getMostPopularTvShowsListOk(tvShowsList)
     }
@@ -100,7 +100,7 @@ class MostPopularTvShowsListPresenter(override var isLastPage: Boolean = false) 
                 )
         val intent = Intent(context?.get()!!, TvShowDetailActivity::class.java)
         val tvShowListItem = tvShowsList[position] as? TvShowListItem
-        intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_BIG_IMAGE_EXTRA, tvShowListItem?.image)
+        intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_BIG_IMAGE_EXTRA, tvShowListItem?.backdropImage)
         intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_TITLE_EXTRA, tvShowListItem?.title)
         intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_ID_EXTRA, tvShowListItem?.id)
         intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_OVERVIEW_EXTRA, tvShowListItem?.overview)

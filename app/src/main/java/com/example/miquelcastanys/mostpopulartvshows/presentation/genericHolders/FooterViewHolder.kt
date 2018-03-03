@@ -1,7 +1,7 @@
 package com.example.miquelcastanys.mostpopulartvshows.presentation.genericHolders
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseFooterViewHolder
 
 
-class FooterViewHolder(val view: View) : RecyclerView.ViewHolder(view)
+class FooterViewHolder(view: View) : BaseFooterViewHolder(view)

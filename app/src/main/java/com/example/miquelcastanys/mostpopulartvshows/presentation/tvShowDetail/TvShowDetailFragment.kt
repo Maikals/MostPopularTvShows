@@ -10,7 +10,9 @@ import android.widget.Toast
 
 import com.example.miquelcastanys.mostpopulartvshows.R
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseFragment
+import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseListItem
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowDetail
+import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowListItem
 import kotlinx.android.synthetic.main.fragment_tv_show_detail.*
 
 
@@ -18,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_tv_show_detail.*
  * A simple [Fragment] subclass.
  */
 class TvShowDetailFragment : BaseFragment(), TvShowDetailContract.View {
+
 
     private var presenter: TvShowDetailContract.Presenter? = null
     companion object {
@@ -63,6 +66,13 @@ class TvShowDetailFragment : BaseFragment(), TvShowDetailContract.View {
     override fun getTvShowDetailKo(errorCode: String) {
         Toast.makeText(activity, getString(R.string.tv_show_detail_error), Toast.LENGTH_SHORT).show()
         activity.finish()
+    }
+
+    override fun getSimilarTvShowsListOk(tvShowList: List<BaseListItem>) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getSimilarTvShowListKo(errorCode: String) {
     }
 
 }
