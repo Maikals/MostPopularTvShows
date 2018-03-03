@@ -451,4 +451,158 @@ object TestConstants {
             "        }\n" +
             "    ]\n" +
             "}"
+
+    const val expectedTvShowDetailJson = "{\n" +
+            "    \"backdrop_path\": \"/nGsNruW3W27V6r4gkyc3iiEGsKR.jpg\",\n" +
+            "    \"created_by\": [\n" +
+            "        {\n" +
+            "            \"id\": 160172,\n" +
+            "            \"name\": \"Chuck Lorre\",\n" +
+            "            \"gender\": 2,\n" +
+            "            \"profile_path\": \"/btpYlMV71sjQXrV142I9kogEINI.jpg\"\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"id\": 163528,\n" +
+            "            \"name\": \"Bill Prady\",\n" +
+            "            \"gender\": 0,\n" +
+            "            \"profile_path\": \"/duXUvo8JtivQR0BHiXHGQwoNYB4.jpg\"\n" +
+            "        }\n" +
+            "    ],\n" +
+            "    \"episode_run_time\": [\n" +
+            "        22\n" +
+            "    ],\n" +
+            "    \"first_air_date\": \"2007-09-24\",\n" +
+            "    \"genres\": [\n" +
+            "        {\n" +
+            "            \"id\": 35,\n" +
+            "            \"name\": \"Comedy\"\n" +
+            "        }\n" +
+            "    ],\n" +
+            "    \"homepage\": \"http://www.cbs.com/shows/big_bang_theory/\",\n" +
+            "    \"id\": 1418,\n" +
+            "    \"in_production\": true,\n" +
+            "    \"languages\": [\n" +
+            "        \"en\"\n" +
+            "    ],\n" +
+            "    \"last_air_date\": \"2018-03-29\",\n" +
+            "    \"name\": \"The Big Bang Theory\",\n" +
+            "    \"networks\": [\n" +
+            "        {\n" +
+            "            \"name\": \"CBS\",\n" +
+            "            \"id\": 16,\n" +
+            "            \"logo_path\": \"/nm8d7P7MJNiBLdgIzUK0gkuEA4r.png\",\n" +
+            "            \"origin_country\": \"US\"\n" +
+            "        }\n" +
+            "    ],\n" +
+            "    \"number_of_episodes\": 261,\n" +
+            "    \"number_of_seasons\": 11,\n" +
+            "    \"origin_country\": [\n" +
+            "        \"US\"\n" +
+            "    ],\n" +
+            "    \"original_language\": \"en\",\n" +
+            "    \"original_name\": \"The Big Bang Theory\",\n" +
+            "    \"overview\": \"The Big Bang Theory is centered on five characters living in Pasadena, California: roommates Leonard Hofstadter and Sheldon Cooper; Penny, a waitress and aspiring actress who lives across the hall; and Leonard and Sheldon's equally geeky and socially awkward friends and co-workers, mechanical engineer Howard Wolowitz and astrophysicist Raj Koothrappali. The geekiness and intellect of the four guys is contrasted for comic effect with Penny's social skills and common sense.\",\n" +
+            "    \"popularity\": 377.360265,\n" +
+            "    \"poster_path\": \"/ooBGRQBdbGzBxAVfExiO8r7kloA.jpg\",\n" +
+            "    \"production_companies\": [\n" +
+            "        {\n" +
+            "            \"name\": \"Warner Bros. Television\",\n" +
+            "            \"id\": 1957\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"name\": \"Chuck Lorre Productions\",\n" +
+            "            \"id\": 35504\n" +
+            "        }\n" +
+            "    ],\n" +
+            "    \"seasons\": [\n" +
+            "        {\n" +
+            "            \"air_date\": null,\n" +
+            "            \"episode_count\": 12,\n" +
+            "            \"id\": 3732,\n" +
+            "            \"poster_path\": \"/gtWHKUsG8de6LdZQoCsjUqrLJ1R.jpg\",\n" +
+            "            \"season_number\": 0\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"air_date\": \"2007-09-24\",\n" +
+            "            \"episode_count\": 17,\n" +
+            "            \"id\": 3738,\n" +
+            "            \"poster_path\": \"/zqAL2rav7Tg8uwDtLurqZVN3mtr.jpg\",\n" +
+            "            \"season_number\": 1\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"air_date\": \"2008-09-22\",\n" +
+            "            \"episode_count\": 23,\n" +
+            "            \"id\": 3733,\n" +
+            "            \"poster_path\": \"/2NBwUBZ4clwj6qO9fBinfxiB0dR.jpg\",\n" +
+            "            \"season_number\": 2\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"air_date\": \"2009-09-21\",\n" +
+            "            \"episode_count\": 23,\n" +
+            "            \"id\": 3734,\n" +
+            "            \"poster_path\": \"/j64iUb52W2IYE9qV9pLi5tFq8IE.jpg\",\n" +
+            "            \"season_number\": 3\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"air_date\": \"2010-09-23\",\n" +
+            "            \"episode_count\": 24,\n" +
+            "            \"id\": 3735,\n" +
+            "            \"poster_path\": \"/hM2TYCmOVXop1xhLA1Mbqyg60ze.jpg\",\n" +
+            "            \"season_number\": 4\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"air_date\": \"2011-09-22\",\n" +
+            "            \"episode_count\": 24,\n" +
+            "            \"id\": 3736,\n" +
+            "            \"poster_path\": \"/l08Z8ihAsTRPEuOehbwk4axg3cu.jpg\",\n" +
+            "            \"season_number\": 5\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"air_date\": \"2012-09-27\",\n" +
+            "            \"episode_count\": 24,\n" +
+            "            \"id\": 3737,\n" +
+            "            \"poster_path\": \"/2Rsb94mlt4OHhiO2UWatDOhnBqv.jpg\",\n" +
+            "            \"season_number\": 6\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"air_date\": \"2013-09-25\",\n" +
+            "            \"episode_count\": 24,\n" +
+            "            \"id\": 3739,\n" +
+            "            \"poster_path\": \"/j1FU0qKHx1F8FVBmK5DBOTrhsAr.jpg\",\n" +
+            "            \"season_number\": 7\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"air_date\": \"2014-09-22\",\n" +
+            "            \"episode_count\": 24,\n" +
+            "            \"id\": 62016,\n" +
+            "            \"poster_path\": \"/71669CxKEeyqtItFH6mFHKxPh3y.jpg\",\n" +
+            "            \"season_number\": 8\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"air_date\": \"2015-09-21\",\n" +
+            "            \"episode_count\": 24,\n" +
+            "            \"id\": 70493,\n" +
+            "            \"poster_path\": \"/eKDvR1vYLCE08K1h0KUfHNliD8T.jpg\",\n" +
+            "            \"season_number\": 9\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"air_date\": \"2016-09-19\",\n" +
+            "            \"episode_count\": 24,\n" +
+            "            \"id\": 80035,\n" +
+            "            \"poster_path\": \"/dz2Mq1bpjBFiTOJbomCEP59kqJV.jpg\",\n" +
+            "            \"season_number\": 10\n" +
+            "        },\n" +
+            "        {\n" +
+            "            \"air_date\": \"2017-09-25\",\n" +
+            "            \"episode_count\": 18,\n" +
+            "            \"id\": 91000,\n" +
+            "            \"poster_path\": \"/zubwQ0aZ7tQxQ6nttMwnxhzrEDt.jpg\",\n" +
+            "            \"season_number\": 11\n" +
+            "        }\n" +
+            "    ],\n" +
+            "    \"status\": \"Returning Series\",\n" +
+            "    \"type\": \"Scripted\",\n" +
+            "    \"vote_average\": 6.8,\n" +
+            "    \"vote_count\": 2646\n" +
+            "}"
 }

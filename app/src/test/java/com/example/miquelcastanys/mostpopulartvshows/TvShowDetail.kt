@@ -1,7 +1,7 @@
 package com.example.miquelcastanys.mostpopulartvshows
 
 import com.example.miquelcastanys.mostpopulartvshows.domain.api.MostPopularTvShowsService
-import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.MostPopularTvShowListResponse
+import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.TvShowDetailResponse
 import com.google.gson.Gson
 import kotlinx.coroutines.experimental.runBlocking
 import org.junit.Test
@@ -13,23 +13,23 @@ import ru.gildor.coroutines.retrofit.await
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class MostPopularTvShowList {
+class TvShowDetail {
     private val service = MostPopularTvShowsService.getService()
 
 
     @Test
     fun getMostPopularTvShowList() {
-        val expectedResponse = Gson().fromJson(TestConstants.expectedTvShowListJson, MostPopularTvShowListResponse::class.java)
+        val expectedResponse = Gson().fromJson(TestConstants.expectedTvShowDetailJson, TvShowDetailResponse::class.java)
         println("expectedResponse -> $expectedResponse")
-        val tvShowDetail = runBlocking { service.getMostPopularTvShowsList("98d3f21f52adf59ccbf65cb76683d73b", "en-US", 1).await() }
-        println("tvShowDetail -> $tvShowDetail")
-        assert(expectedResponse == tvShowDetail)
+        val tvShowsList = runBlocking { service.getTvShowDetail(1418, "98d3f21f52adf59ccbf65cb76683d73b", "en-US").await() }
+        println("tvShowsList -> $tvShowsList")
+        assert(expectedResponse == tvShowsList)
     }
 
     @Test
     fun getMostPopularTvShowListError() {
         try {
-            runBlocking { service.getMostPopularTvShowsList("", "en-US", 1).await() }
+            runBlocking { service.getTvShowDetail(1418, "", "en-US").await() }
         } catch (e: HttpException) {
             assert(e.code() == 401)
         }
