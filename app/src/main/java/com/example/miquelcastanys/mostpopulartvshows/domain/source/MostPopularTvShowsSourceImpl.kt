@@ -3,6 +3,7 @@ package com.example.miquelcastanys.mostpopulartvshows.domain.source
 import com.example.miquelcastanys.mostpopulartvshows.BuildConfig
 import com.example.miquelcastanys.mostpopulartvshows.domain.api.MostPopularTvShowsService
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.MostPopularTvShowListResponse
+import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.TvShowDetailResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,10 +21,8 @@ class MostPopularTvShowsSourceImpl : MostPopularTvShowsSource {
             override fun onResponse(call: Call<MostPopularTvShowListResponse>?,
                                     response: Response<MostPopularTvShowListResponse>?) {
                 if (response?.code() == 200) {
-//                    if (BuildConfig.DEBUG) println("Body -> " + response.body())
                     callback.onSuccess(response.body()!!)
-                }
-                else
+                } else
                     callback.onFailure(response?.code() ?: 500)
             }
 
@@ -32,5 +31,22 @@ class MostPopularTvShowsSourceImpl : MostPopularTvShowsSource {
             }
 
         })
+    }
+
+    override fun getTvShowDetail(id: Int, apiKey: String, language: String, callback: MostPopularTvShowsSource.GetTvShowDetailCallback) {
+        val tvShowDetail = MostPopularTvShowsService.getService().getTvShowDetail(id, apiKey, language)
+        if (BuildConfig.DEBUG) println("URL -> " + tvShowDetail.request().url())
+        tvShowDetail.enqueue(object : Callback<TvShowDetailResponse> {
+            override fun onResponse(call: Call<TvShowDetailResponse>?, response: Response<TvShowDetailResponse>?) {
+                if (response?.code() == 200) {
+                    callback.onSuccess(response.body()!!)
+                } else
+                    callback.onFailure(response?.code() ?: 500)            }
+
+            override fun onFailure(call: Call<TvShowDetailResponse>?, t: Throwable?) {
+                callback.onFailure(500)
+            }
+        })
+
     }
 }

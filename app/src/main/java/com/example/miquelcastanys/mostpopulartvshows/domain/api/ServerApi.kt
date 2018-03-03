@@ -1,6 +1,7 @@
 package com.example.miquelcastanys.mostpopulartvshows.domain.api
 
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.MostPopularTvShowListResponse
+import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.TvShowDetailResponse
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.TvShowResponse
 import retrofit2.Call
 import retrofit2.http.GET
@@ -16,6 +17,5 @@ interface ServerApi {
     @GET("tv/{tvShowId}")
     fun getTvShowDetail(@Path("tvShowId") tvShowId: Int,
                         @Query("api_key") apiKey: String,
-                        @Query("language") language: String,
-                        @Query("page") page: Int): Call<TvShowResponse>
+                        @Query("language") language: String): Call<TvShowDetailResponse>
 }
