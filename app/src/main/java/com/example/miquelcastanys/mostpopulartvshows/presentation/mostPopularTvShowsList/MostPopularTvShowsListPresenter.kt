@@ -50,6 +50,7 @@ class MostPopularTvShowsListPresenter(override var isLastPage: Boolean = false) 
                                 }
 
                                 override fun onError(code: Int) {
+                                    --currentPage
                                     view?.get()?.getMostPopularTvShowsListKo("There is an error")
                                     view?.get()?.showProgressBar(false)
                                 }

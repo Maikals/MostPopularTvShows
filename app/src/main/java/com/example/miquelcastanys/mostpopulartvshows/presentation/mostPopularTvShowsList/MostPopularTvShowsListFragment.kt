@@ -7,11 +7,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.miquelcastanys.mostpopulartvshows.R
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseFragment
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseListItem
 import com.example.miquelcastanys.mostpopulartvshows.presentation.control.adapter.MostPopularTvShowsListAdapter
+import com.example.miquelcastanys.mostpopulartvshows.presentation.enumeration.EmptyViewModel
 import kotlinx.android.synthetic.main.fragment_most_popular_tv_shows_list.*
 
 
@@ -71,8 +71,12 @@ class MostPopularTvShowsListFragment : BaseFragment(), MostPopularTvShowsListCon
 
     private fun setRecyclerView() {
         mostPopularTvShowsListRV.layoutManager = linearLayoutManager
-        mostPopularTvShowsListRV.addOnScrollListener(onScrollListener)
+        attachScrollListener()
 
+    }
+
+    private fun attachScrollListener() {
+        mostPopularTvShowsListRV.addOnScrollListener(onScrollListener)
     }
 
     override fun setPresenter(presenter: MostPopularTvShowsListContract.Presenter) {
@@ -90,21 +94,57 @@ class MostPopularTvShowsListFragment : BaseFragment(), MostPopularTvShowsListCon
 
     override fun getMostPopularTvShowsListOk(tvShowsList: List<BaseListItem>) {
         loading = false
+        if (!tvShowsList.isEmpty()) {
+            attachScrollListener()
+            hideEmptyView()
+            showRecyclerView()
+            initializeRecyclerViewAdapter(tvShowsList)
+        } else {
+            emptyView.fillViews(EmptyViewModel.EMPTY)
+            hideRecyclerView()
+            showEmptyView()
+        }
+        mostPopularTvShowsListAdapter?.notifyDataSetChanged()
+
+    }
+
+    private fun initializeRecyclerViewAdapter(tvShowsList: List<BaseListItem>) {
         if (mostPopularTvShowsListAdapter == null) {
             mostPopularTvShowsListAdapter = MostPopularTvShowsListAdapter(tvShowsList)
             mostPopularTvShowsListRV.adapter = mostPopularTvShowsListAdapter
         }
-        mostPopularTvShowsListAdapter?.notifyDataSetChanged()
-        mostPopularTvShowsListRV.visibility = View.VISIBLE
     }
 
     override fun getMostPopularTvShowsListKo(errorMessage: String) {
         loading = false
-        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+        emptyView.fillViews(EmptyViewModel.ERROR)
+        hideRecyclerView()
+        showEmptyView()
+    }
+
+    private fun showRecyclerView() {
+        mostPopularTvShowsListRV.visibility = View.VISIBLE
+    }
+
+    private fun hideRecyclerView() {
+        mostPopularTvShowsListRV.visibility = View.GONE
+    }
+
+    private fun hideEmptyView() {
+        emptyView.visibility = View.GONE
+
+    }
+
+    private fun showEmptyView() {
+        emptyView.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        unattachScrollListener()
+    }
+
+    private fun unattachScrollListener() {
         mostPopularTvShowsListRV.removeOnScrollListener(onScrollListener)
     }
 
