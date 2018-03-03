@@ -61,7 +61,7 @@ class TvShowDetailFragment : BaseFragment(), TvShowDetailContract.View {
     }
 
     override fun getTvShowDetailKo(errorCode: String) {
-        Toast.makeText(activity, "Something went wrong", Toast.LENGTH_SHORT).show()
+        Toast.makeText(activity, getString(R.string.tv_show_detail_error), Toast.LENGTH_SHORT).show()
         activity.finish()
     }
 
