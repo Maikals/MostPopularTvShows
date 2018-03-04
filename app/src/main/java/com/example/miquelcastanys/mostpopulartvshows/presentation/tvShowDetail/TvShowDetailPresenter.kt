@@ -30,6 +30,10 @@ class TvShowDetailPresenter(val id: Int) : TvShowDetailContract.Presenter {
     private var repository: MostPopularTvShowsSourceImpl? = null
     private val similarTvShowsList: ArrayList<BaseListItem> = ArrayList()
     private var tvShowDetail: TvShowDetail? = null
+    companion object {
+        private const val PAGE = 1
+    }
+
 
 
     override fun start() {
@@ -75,7 +79,7 @@ class TvShowDetailPresenter(val id: Int) : TvShowDetailContract.Presenter {
             GetSimilarTvShowsListUseCase(it!!).getAsync(id,
                     PresentationConstants.API_KEY,
                     PresentationConstants.LANGUAGE,
-                    1,
+                    PAGE,
                     object : UseCaseCallback<TvShowListResponse> {
                         override fun onSuccess(item: TvShowListResponse) {
                             similarTvShowsList.addAll(TvShowsListMapper.turnInto(item))
