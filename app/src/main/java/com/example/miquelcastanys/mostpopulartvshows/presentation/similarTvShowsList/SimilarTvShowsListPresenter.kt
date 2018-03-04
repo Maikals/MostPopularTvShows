@@ -2,6 +2,7 @@ package com.example.miquelcastanys.mostpopulartvshows.presentation.similarTvShow
 
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseTvShowListPresenter
 import com.example.miquelcastanys.mostpopulartvshows.presentation.useCases.GetSimilarTvShowsListUseCase
+import com.example.miquelcastanys.mostpopulartvshows.presentation.util.PresentationConstants
 
 
 class SimilarTvShowsListPresenter(val id: Int) : BaseTvShowListPresenter() {
@@ -9,8 +10,8 @@ class SimilarTvShowsListPresenter(val id: Int) : BaseTvShowListPresenter() {
         repository.let {
             GetSimilarTvShowsListUseCase(it!!)
                     .getAsync(id,
-                            "98d3f21f52adf59ccbf65cb76683d73b",
-                            "en-US",
+                            PresentationConstants.API_KEY,
+                            PresentationConstants.LANGUAGE,
                             currentPage++,
                             useCaseCallback)
         }

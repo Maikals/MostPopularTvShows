@@ -2,6 +2,7 @@ package com.example.miquelcastanys.mostpopulartvshows.presentation.mostPopularTv
 
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseTvShowListPresenter
 import com.example.miquelcastanys.mostpopulartvshows.presentation.useCases.MostPopularTvShowsListUseCase
+import com.example.miquelcastanys.mostpopulartvshows.presentation.util.PresentationConstants
 
 
 class MostPopularTvShowsListPresenter : BaseTvShowListPresenter() {
@@ -9,8 +10,8 @@ class MostPopularTvShowsListPresenter : BaseTvShowListPresenter() {
     override fun getTvShowsList() {
         repository.let {
             MostPopularTvShowsListUseCase(it!!)
-                    .getAsync("98d3f21f52adf59ccbf65cb76683d73b",
-                            "en-US",
+                    .getAsync(PresentationConstants.API_KEY,
+                            PresentationConstants.LANGUAGE,
                             currentPage++,
                             useCaseCallback)
         }

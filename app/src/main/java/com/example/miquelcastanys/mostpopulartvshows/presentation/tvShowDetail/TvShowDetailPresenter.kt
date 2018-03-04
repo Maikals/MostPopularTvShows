@@ -19,6 +19,7 @@ import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presenta
 import com.example.miquelcastanys.mostpopulartvshows.presentation.similarTvShowsList.SimilarTvShowsListActivity
 import com.example.miquelcastanys.mostpopulartvshows.presentation.useCases.GetSimilarTvShowsListUseCase
 import com.example.miquelcastanys.mostpopulartvshows.presentation.useCases.TvShowDetailUseCase
+import com.example.miquelcastanys.mostpopulartvshows.presentation.util.PresentationConstants
 import java.lang.ref.WeakReference
 
 
@@ -52,8 +53,8 @@ class TvShowDetailPresenter(val id: Int) : TvShowDetailContract.Presenter {
     override fun getTvShowDetail() {
         repository.let {
             TvShowDetailUseCase(it!!).getAsync(id,
-                    "98d3f21f52adf59ccbf65cb76683d73b",
-                    "en-US",
+                    PresentationConstants.API_KEY,
+                    PresentationConstants.LANGUAGE,
                     object : UseCaseCallback<TvShowDetailResponse> {
                         override fun onSuccess(item: TvShowDetailResponse) {
                             tvShowDetail = TvShowDetailMapper.turnInto(item)
@@ -72,8 +73,8 @@ class TvShowDetailPresenter(val id: Int) : TvShowDetailContract.Presenter {
     override fun getSimilarTvShowList() {
         repository.let {
             GetSimilarTvShowsListUseCase(it!!).getAsync(id,
-                    "98d3f21f52adf59ccbf65cb76683d73b",
-                    "en-US",
+                    PresentationConstants.API_KEY,
+                    PresentationConstants.LANGUAGE,
                     1,
                     object : UseCaseCallback<TvShowListResponse> {
                         override fun onSuccess(item: TvShowListResponse) {

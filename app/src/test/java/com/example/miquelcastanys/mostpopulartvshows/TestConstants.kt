@@ -605,4 +605,6 @@ object TestConstants {
             "    \"vote_average\": 6.8,\n" +
             "    \"vote_count\": 2646\n" +
             "}"
+    const val TV_SHOW_ID = 1418
+    const val PAGE = 1
 }

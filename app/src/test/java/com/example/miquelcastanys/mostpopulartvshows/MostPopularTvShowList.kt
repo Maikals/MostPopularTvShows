@@ -2,6 +2,7 @@ package com.example.miquelcastanys.mostpopulartvshows
 
 import com.example.miquelcastanys.mostpopulartvshows.domain.api.MostPopularTvShowsService
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.TvShowListResponse
+import com.example.miquelcastanys.mostpopulartvshows.presentation.util.PresentationConstants
 import com.google.gson.Gson
 import kotlinx.coroutines.experimental.runBlocking
 import org.junit.Test
@@ -21,7 +22,7 @@ class MostPopularTvShowList {
     fun getMostPopularTvShowList() {
         val expectedResponse = Gson().fromJson(TestConstants.expectedTvShowListJson, TvShowListResponse::class.java)
         println("expectedResponse -> $expectedResponse")
-        val tvShowDetail = runBlocking { service.getMostPopularTvShowsList("98d3f21f52adf59ccbf65cb76683d73b", "en-US", 1).await() }
+        val tvShowDetail = runBlocking { service.getMostPopularTvShowsList(PresentationConstants.API_KEY, PresentationConstants.API_KEY, TestConstants.PAGE).await() }
         println("tvShowDetail -> $tvShowDetail")
         assert(expectedResponse == tvShowDetail)
     }
@@ -29,7 +30,7 @@ class MostPopularTvShowList {
     @Test
     fun getMostPopularTvShowListError() {
         try {
-            runBlocking { service.getMostPopularTvShowsList("", "en-US", 1).await() }
+            runBlocking { service.getMostPopularTvShowsList("", PresentationConstants.API_KEY, TestConstants.PAGE).await() }
         } catch (e: HttpException) {
             assert(e.code() == 401)
         }
