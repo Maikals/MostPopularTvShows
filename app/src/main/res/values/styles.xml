@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TvShowDetailFieldTitle">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TvShowDetailFieldContent">
+        <item name="android:textSize">15sp</item>
+    </style>
+
 </resources>
