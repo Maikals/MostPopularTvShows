@@ -21,6 +21,7 @@ abstract class BaseTvShowListPresenter(override var isLastPage: Boolean = false)
     protected var repository: MostPopularTvShowsSourceImpl? = null
     private var tvShowsList: ArrayList<BaseListItem> = ArrayList()
     protected var currentPage = 1
+    private var clearList: Boolean = false
     protected val useCaseCallback = object : UseCaseCallback<TvShowListResponse> {
         override fun onSuccess(item: TvShowListResponse) {
             manageResult(item)
@@ -37,8 +38,8 @@ abstract class BaseTvShowListPresenter(override var isLastPage: Boolean = false)
 
     override fun start() {
         view?.get()?.showProgressBar(true)
-        tvShowsList.clear()
         currentPage = 1
+        clearList = true
         getTvShowsList()
     }
 
@@ -55,6 +56,10 @@ abstract class BaseTvShowListPresenter(override var isLastPage: Boolean = false)
     }
 
     private fun manageResult(item: TvShowListResponse) {
+        if (clearList) {
+            tvShowsList.clear()
+            clearList = false
+        }
         removeFooter()
         setIsLastPage(item.page, item.total_pages)
         addResultToTvShowList(TvShowsListMapper.turnInto(item))
