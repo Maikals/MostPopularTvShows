@@ -32,7 +32,6 @@ class TvShowDetailFragment : BaseFragment(),
             val tvShowDetailFragment = TvShowDetailFragment()
             val arguments = Bundle()
             arguments.putInt(TV_SHOW_DETAIL_ID_EXTRA, id)
-
             tvShowDetailFragment.arguments = arguments
             return tvShowDetailFragment
         }
@@ -61,7 +60,6 @@ class TvShowDetailFragment : BaseFragment(),
         similarTvShowListRV.layoutManager = linearLayoutManager
         similarTvShowListRV.setHasFixedSize(true)
         similarTvShowListRV.isNestedScrollingEnabled = false
-
     }
 
     override fun setPresenter(presenter: TvShowDetailContract.Presenter) {
@@ -73,6 +71,10 @@ class TvShowDetailFragment : BaseFragment(),
     }
 
     override fun getTvShowDetailOk(tvShowDetail: TvShowDetail) {
+        setInfoFields(tvShowDetail)
+    }
+
+    private fun setInfoFields(tvShowDetail: TvShowDetail) {
         infoContainer?.visibility = View.VISIBLE
         overview?.text = tvShowDetail.overview
         val ratingString = "${getString(R.string.rating)} ${tvShowDetail.rating}"
@@ -85,14 +87,25 @@ class TvShowDetailFragment : BaseFragment(),
     }
 
     override fun getSimilarTvShowsListOk(tvShowList: List<BaseListItem>) {
+        if (!tvShowList.isEmpty()) {
+            initializeAdapter(tvShowList)
+            similarTvShowsListAdapter?.notifyDataSetChanged()
+        } else hideSimilarTvShowsList()
+    }
+
+    private fun hideSimilarTvShowsList() {
+        similarTvShowListContainer.visibility = View.GONE
+    }
+
+    private fun initializeAdapter(tvShowList: List<BaseListItem>) {
         if (similarTvShowsListAdapter == null) {
             similarTvShowsListAdapter = SimilarTvShowsListAdapter(tvShowList, this)
             similarTvShowListRV.adapter = similarTvShowsListAdapter
         }
-        similarTvShowsListAdapter?.notifyDataSetChanged()
     }
 
     override fun getSimilarTvShowListKo(errorCode: String) {
+        hideSimilarTvShowsList()
     }
 
     override fun onItemClick(position: Int, view: View) {
