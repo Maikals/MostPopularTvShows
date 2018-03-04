@@ -1,10 +1,10 @@
 package com.example.miquelcastanys.mostpopulartvshows.presentation.similarTvShowsList
 
 import android.os.Bundle
+import android.view.MenuItem
 import com.example.miquelcastanys.mostpopulartvshows.R
 import com.example.miquelcastanys.mostpopulartvshows.domain.source.MostPopularTvShowsSourceImpl
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseActivityList
-import com.example.miquelcastanys.mostpopulartvshows.presentation.mostPopularTvShowsList.MostPopularTvShowsListFragment
 
 class SimilarTvShowsListActivity : BaseActivityList() {
 
@@ -20,6 +20,17 @@ class SimilarTvShowsListActivity : BaseActivityList() {
     override fun onCreate(savedInstanceState: Bundle?) {
         getExtraData()
         super.onCreate(savedInstanceState)
+        if (supportActionBar != null) {
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun getExtraData() {

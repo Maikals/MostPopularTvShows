@@ -47,6 +47,7 @@ class TvShowDetailActivity : BaseActivity() {
         setSupportActionBar(toolbar)
         if (supportActionBar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         }
     }
 
