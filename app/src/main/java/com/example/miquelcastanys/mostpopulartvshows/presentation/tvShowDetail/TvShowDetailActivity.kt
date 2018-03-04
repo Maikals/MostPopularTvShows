@@ -1,5 +1,7 @@
 package com.example.miquelcastanys.mostpopulartvshows.presentation.tvShowDetail
 
+import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
@@ -9,6 +11,7 @@ import com.example.miquelcastanys.mostpopulartvshows.R
 import com.example.miquelcastanys.mostpopulartvshows.domain.source.MostPopularTvShowsSourceImpl
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseActivity
 import com.example.miquelcastanys.mostpopulartvshows.presentation.glideModule.GlideApp
+import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowListItem
 import kotlinx.android.synthetic.main.activity_tv_show_detail.*
 
 
@@ -19,7 +22,13 @@ class TvShowDetailActivity : BaseActivity() {
         const val TV_SHOW_DETAIL_ID_EXTRA = "tvShowDetailIdExtra"
         const val TV_SHOW_DETAIL_BIG_IMAGE_EXTRA = "tvShowDetailBigImageExtra"
         const val TV_SHOW_DETAIL_TITLE_EXTRA = "tvShowDetailTitleExtra"
-        const val TV_SHOW_DETAIL_OVERVIEW_EXTRA = "tvShowDetailOverviewExtra"
+        fun getIntent(context: Context, item: TvShowListItem) : Intent {
+            val intent = Intent(context, TvShowDetailActivity::class.java)
+            intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_BIG_IMAGE_EXTRA, item?.backdropImage)
+            intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_TITLE_EXTRA, item?.title)
+            intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_ID_EXTRA, item?.id)
+            return intent
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,15 +76,14 @@ class TvShowDetailActivity : BaseActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
-            finish()
+            onBackPressed()
         }
         return super.onOptionsItemSelected(item)
     }
 
     override fun createFragment() {
         val tvShowDetailFragment = TvShowDetailFragment.newInstance(
-                intent.getIntExtra(TV_SHOW_DETAIL_ID_EXTRA, 0),
-                intent.getStringExtra(TV_SHOW_DETAIL_OVERVIEW_EXTRA))
+                intent.getIntExtra(TV_SHOW_DETAIL_ID_EXTRA, 0))
         val presenter = TvShowDetailPresenter(intent.getIntExtra(TV_SHOW_DETAIL_ID_EXTRA, -1))
         presenter.attach(this, tvShowDetailFragment, MostPopularTvShowsSourceImpl())
         tvShowDetailFragment.setPresenter(presenter)

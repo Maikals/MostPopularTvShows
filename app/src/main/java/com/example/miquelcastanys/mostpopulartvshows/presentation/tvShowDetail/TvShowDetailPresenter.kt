@@ -104,12 +104,8 @@ class TvShowDetailPresenter(val id: Int) : TvShowDetailContract.Presenter {
                         view, // Starting view
                         transitionName    // The String
                 )
-        val intent = Intent(context?.get()!!, TvShowDetailActivity::class.java)
-        val tvShowListItem = similarTvShowsList[position] as? TvShowListItem
-        intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_BIG_IMAGE_EXTRA, tvShowListItem?.backdropImage)
-        intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_TITLE_EXTRA, tvShowListItem?.title)
-        intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_ID_EXTRA, tvShowListItem?.id)
-        intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_OVERVIEW_EXTRA, tvShowListItem?.overview)
+        val intent = TvShowDetailActivity.getIntent(context?.get()!!,
+                (similarTvShowsList[position] as? TvShowListItem)!!)
         ActivityCompat.startActivity(context?.get()!!, intent, options.toBundle())
     }
 }

@@ -28,12 +28,11 @@ class TvShowDetailFragment : BaseFragment(),
     companion object {
         const val TAG = "TvShowDetailFragment"
         private const val TV_SHOW_DETAIL_ID_EXTRA = "tvShowDetailIdExtra"
-        private const val TV_SHOW_DETAIL_OVERVIEW_EXTRA = "tvShowDetailOverviewExtra"
-        fun newInstance(id: Int, overview: String): TvShowDetailFragment {
+        fun newInstance(id: Int): TvShowDetailFragment {
             val tvShowDetailFragment = TvShowDetailFragment()
             val arguments = Bundle()
             arguments.putInt(TV_SHOW_DETAIL_ID_EXTRA, id)
-            arguments.putString(TV_SHOW_DETAIL_OVERVIEW_EXTRA, overview)
+
             tvShowDetailFragment.arguments = arguments
             return tvShowDetailFragment
         }
@@ -47,7 +46,6 @@ class TvShowDetailFragment : BaseFragment(),
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        overview.text = arguments.getString(TV_SHOW_DETAIL_OVERVIEW_EXTRA)
         presenter?.start()
         setRecyclerView()
         setMoreOnClickListener()
