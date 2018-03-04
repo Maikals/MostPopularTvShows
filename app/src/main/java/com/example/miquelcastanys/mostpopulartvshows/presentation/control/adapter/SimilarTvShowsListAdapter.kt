@@ -10,19 +10,24 @@ import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseTvSho
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseTvShowViewHolder
 import com.example.miquelcastanys.mostpopulartvshows.presentation.genericHolders.FooterViewHolder
 import com.example.miquelcastanys.mostpopulartvshows.presentation.interfaces.OnListItemClickListener
-import com.example.miquelcastanys.mostpopulartvshows.presentation.mostPopularTvShowsList.TvShowViewHolder
+import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowListItem
+import com.example.miquelcastanys.mostpopulartvshows.presentation.tvShowDetail.SimilarTvShowViewHolder
 
 
 class SimilarTvShowsListAdapter(tvShowList: List<BaseListItem>
                                 , listener: OnListItemClickListener.View)
     : BaseTvShowListAdapter(tvShowList, listener) {
+    override fun bindView(holder: BaseTvShowViewHolder, tvShowListItem: TvShowListItem) {
+        (holder as? SimilarTvShowViewHolder)?.bindView(tvShowListItem)
+    }
+
     override fun createFooterViewHolder(parent: ViewGroup?): BaseFooterViewHolder =
             FooterViewHolder(LayoutInflater.from(parent?.context)
                     .inflate(R.layout.similar_tv_show_last_item, parent, false))
 
 
     override fun createTvShowViewHolder(parent: ViewGroup?): BaseTvShowViewHolder =
-            TvShowViewHolder(LayoutInflater.from(parent?.context)
+            SimilarTvShowViewHolder(LayoutInflater.from(parent?.context)
                     .inflate(R.layout.similar_tv_show_list_item, parent, false), this)
 
 

@@ -7,7 +7,7 @@ import com.example.miquelcastanys.mostpopulartvshows.presentation.glideModule.Gl
 import com.example.miquelcastanys.mostpopulartvshows.presentation.interfaces.OnListItemClickListener
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowListItem
 import com.example.miquelcastanys.mostpopulartvshows.presentation.util.PresentationConstants
-import kotlinx.android.synthetic.main.tv_show_list_item.view.*
+import kotlinx.android.synthetic.main.similar_tv_show_list_item.view.*
 
 
 abstract class BaseTvShowViewHolder(val view: View,
@@ -18,13 +18,14 @@ abstract class BaseTvShowViewHolder(val view: View,
         val ratingString = "${view.context.getString(R.string.rating)} ${tvShowListItem.voteAverage}"
         view.tvShowRating.text = ratingString
         view.setOnClickListener { listener.onItemClick(adapterPosition, view.tvShowImage) }
+        loadImage(tvShowListItem.backdropImage)
     }
 
     protected fun loadImage(imageUrl: String) {
         GlideApp
                 .with(view)
                 .load("${PresentationConstants.BASE_IMAGE_URL}$imageUrl")
-                .placeholder(R.drawable.ic_action_name)
+                .placeholder(R.drawable.ic_placeholder_white)
                 .centerCrop()
                 .into(view.tvShowImage)
     }

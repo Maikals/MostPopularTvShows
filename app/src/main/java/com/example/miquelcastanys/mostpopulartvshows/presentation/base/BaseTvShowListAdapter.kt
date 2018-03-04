@@ -1,12 +1,9 @@
 package com.example.miquelcastanys.mostpopulartvshows.presentation.base
 
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import com.example.miquelcastanys.mostpopulartvshows.R
-import com.example.miquelcastanys.mostpopulartvshows.presentation.genericHolders.FooterViewHolder
 import com.example.miquelcastanys.mostpopulartvshows.presentation.interfaces.OnListItemClickListener
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowListItem
 import com.example.miquelcastanys.mostpopulartvshows.presentation.mostPopularTvShowsList.TvShowViewHolder
@@ -38,10 +35,14 @@ abstract class BaseTvShowListAdapter(private val tvShowList: List<BaseListItem>,
     override fun getItemCount(): Int = tvShowList.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        (holder as? TvShowViewHolder)?.bindView((tvShowList[position] as? TvShowListItem)!!)
-        if ((holder as? TvShowViewHolder)?.view != null)
-            setAnimation((holder as? TvShowViewHolder)?.view!!, position)
+        if (holder is BaseTvShowViewHolder)
+            bindView(holder, (tvShowList[position] as? TvShowListItem)!!)
+
+        if ((holder as? BaseTvShowViewHolder)?.view != null)
+            setAnimation((holder as? BaseTvShowViewHolder)?.view!!, position)
     }
+
+    abstract fun bindView(holder: BaseTvShowViewHolder, tvShowListItem: TvShowListItem)
 
 
     override fun getItemViewType(position: Int): Int =
