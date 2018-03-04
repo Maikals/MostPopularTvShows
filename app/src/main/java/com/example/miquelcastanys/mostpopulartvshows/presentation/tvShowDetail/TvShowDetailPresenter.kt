@@ -1,6 +1,8 @@
 package com.example.miquelcastanys.mostpopulartvshows.presentation.tvShowDetail
 
 import android.content.Context
+import android.content.Intent
+import android.support.v7.app.AppCompatActivity
 import com.example.miquelcastanys.mostpopulartvshows.domain.source.MostPopularTvShowsSourceImpl
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseListItem
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.UseCaseCallback
@@ -8,6 +10,8 @@ import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.T
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.TvShowListResponse
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.mappers.TvShowDetailMapper
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.mappers.TvShowsListMapper
+import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowDetail
+import com.example.miquelcastanys.mostpopulartvshows.presentation.similarTvShowsList.SimilarTvShowsListActivity
 import com.example.miquelcastanys.mostpopulartvshows.presentation.useCases.GetSimilarTvShowsListUseCase
 import com.example.miquelcastanys.mostpopulartvshows.presentation.useCases.TvShowDetailUseCase
 import java.lang.ref.WeakReference
@@ -19,6 +23,8 @@ class TvShowDetailPresenter(val id: Int) : TvShowDetailContract.Presenter {
     private var view: WeakReference<TvShowDetailContract.View>? = null
     private var repository: MostPopularTvShowsSourceImpl? = null
     private val similarTvShowsList: ArrayList<BaseListItem> = ArrayList()
+    private var tvShowDetail: TvShowDetail? = null
+
 
     override fun start() {
         view?.get()?.showProgressBar(true)
@@ -45,7 +51,8 @@ class TvShowDetailPresenter(val id: Int) : TvShowDetailContract.Presenter {
                     "en-US",
                     object : UseCaseCallback<TvShowDetailResponse> {
                         override fun onSuccess(item: TvShowDetailResponse) {
-                            view?.get()?.getTvShowDetailOk(TvShowDetailMapper.turnInto(item))
+                            tvShowDetail = TvShowDetailMapper.turnInto(item)
+                            view?.get()?.getTvShowDetailOk(tvShowDetail!!)
                             view?.get()?.showProgressBar(false)
                         }
 
@@ -78,6 +85,10 @@ class TvShowDetailPresenter(val id: Int) : TvShowDetailContract.Presenter {
     }
 
     override fun openSimilarTvShowCompleteList() {
-
+        val intent = Intent(context?.get(), SimilarTvShowsListActivity::class.java)
+        intent.putExtra(SimilarTvShowsListActivity.TV_SHOW_TITLE_EXTRA, tvShowDetail?.name)
+        intent.putExtra(SimilarTvShowsListActivity.TV_SHOW_ID_EXTRA, id)
+        context?.get()?.startActivity(intent)
+        (context?.get() as AppCompatActivity).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
     }
 }

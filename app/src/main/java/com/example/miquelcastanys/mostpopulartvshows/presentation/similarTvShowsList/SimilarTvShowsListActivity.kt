@@ -37,7 +37,7 @@ class SimilarTvShowsListActivity : BaseActivityList() {
         similarTvShowsListPresenter.attach(this,
                 currentFragment as SimilarTvShowsListFragment,
                 MostPopularTvShowsSourceImpl())
-        (currentFragment as MostPopularTvShowsListFragment).setPresenter(similarTvShowsListPresenter)
+        (currentFragment as SimilarTvShowsListFragment).setPresenter(similarTvShowsListPresenter)
         currentTag = SimilarTvShowsListFragment.TAG
     }
 
