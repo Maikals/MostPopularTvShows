@@ -52,7 +52,7 @@ class TvShowDetailFragment : BaseFragment(),
     }
 
     private fun setMoreOnClickListener() {
-        more.setOnClickListener{
+        more.setOnClickListener {
             presenter?.openSimilarTvShowCompleteList()
         }
     }

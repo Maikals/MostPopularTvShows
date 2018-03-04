@@ -22,11 +22,11 @@ class TvShowDetailActivity : BaseActivity() {
         const val TV_SHOW_DETAIL_ID_EXTRA = "tvShowDetailIdExtra"
         const val TV_SHOW_DETAIL_BIG_IMAGE_EXTRA = "tvShowDetailBigImageExtra"
         const val TV_SHOW_DETAIL_TITLE_EXTRA = "tvShowDetailTitleExtra"
-        fun getIntent(context: Context, item: TvShowListItem) : Intent {
+        fun getIntent(context: Context, item: TvShowListItem): Intent {
             val intent = Intent(context, TvShowDetailActivity::class.java)
-            intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_BIG_IMAGE_EXTRA, item?.backdropImage)
-            intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_TITLE_EXTRA, item?.title)
-            intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_ID_EXTRA, item?.id)
+            intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_BIG_IMAGE_EXTRA, item.backdropImage)
+            intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_TITLE_EXTRA, item.title)
+            intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_ID_EXTRA, item.id)
             return intent
         }
     }
