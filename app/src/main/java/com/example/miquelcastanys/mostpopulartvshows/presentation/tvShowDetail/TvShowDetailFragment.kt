@@ -75,10 +75,10 @@ class TvShowDetailFragment : BaseFragment(),
     }
 
     override fun getTvShowDetailOk(tvShowDetail: TvShowDetail) {
-        infoContainer.visibility = View.VISIBLE
-        overview.text = tvShowDetail.overview
+        infoContainer?.visibility = View.VISIBLE
+        overview?.text = tvShowDetail.overview
         val ratingString = "${getString(R.string.rating)} ${tvShowDetail.rating}"
-        tvShowRating.text = ratingString
+        tvShowRating?.text = ratingString
     }
 
     override fun getTvShowDetailKo(errorCode: String) {
@@ -98,6 +98,7 @@ class TvShowDetailFragment : BaseFragment(),
     }
 
     override fun onItemClick(position: Int, view: View) {
+        presenter?.openTvShowDetail(position, view)
     }
 
 }

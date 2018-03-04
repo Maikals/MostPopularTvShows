@@ -2,7 +2,10 @@ package com.example.miquelcastanys.mostpopulartvshows.presentation.tvShowDetail
 
 import android.content.Context
 import android.content.Intent
+import android.support.v4.app.ActivityCompat
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.example.miquelcastanys.mostpopulartvshows.R
 import com.example.miquelcastanys.mostpopulartvshows.domain.source.MostPopularTvShowsSourceImpl
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseListItem
@@ -12,6 +15,7 @@ import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.T
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.mappers.TvShowDetailMapper
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.mappers.TvShowsListMapper
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowDetail
+import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowListItem
 import com.example.miquelcastanys.mostpopulartvshows.presentation.similarTvShowsList.SimilarTvShowsListActivity
 import com.example.miquelcastanys.mostpopulartvshows.presentation.useCases.GetSimilarTvShowsListUseCase
 import com.example.miquelcastanys.mostpopulartvshows.presentation.useCases.TvShowDetailUseCase
@@ -91,5 +95,21 @@ class TvShowDetailPresenter(val id: Int) : TvShowDetailContract.Presenter {
         intent.putExtra(SimilarTvShowsListActivity.TV_SHOW_ID_EXTRA, id)
         context?.get()?.startActivity(intent)
         (context?.get() as AppCompatActivity).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
+    override fun openTvShowDetail(position: Int, view: View) {
+        val transitionName = context?.get()?.getString(R.string.transition_string)
+        val options =
+                ActivityOptionsCompat.makeSceneTransitionAnimation((context?.get()!! as? AppCompatActivity),
+                        view, // Starting view
+                        transitionName    // The String
+                )
+        val intent = Intent(context?.get()!!, TvShowDetailActivity::class.java)
+        val tvShowListItem = similarTvShowsList[position] as? TvShowListItem
+        intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_BIG_IMAGE_EXTRA, tvShowListItem?.backdropImage)
+        intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_TITLE_EXTRA, tvShowListItem?.title)
+        intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_ID_EXTRA, tvShowListItem?.id)
+        intent.putExtra(TvShowDetailActivity.TV_SHOW_DETAIL_OVERVIEW_EXTRA, tvShowListItem?.overview)
+        ActivityCompat.startActivity(context?.get()!!, intent, options.toBundle())
     }
 }

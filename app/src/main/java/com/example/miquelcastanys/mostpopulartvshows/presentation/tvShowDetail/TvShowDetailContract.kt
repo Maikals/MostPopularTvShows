@@ -19,5 +19,6 @@ interface TvShowDetailContract {
         fun getTvShowDetail()
         fun getSimilarTvShowList()
         fun openSimilarTvShowCompleteList()
+        fun openTvShowDetail(position: Int, view: android.view.View)
     }
 }

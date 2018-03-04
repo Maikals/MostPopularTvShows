@@ -9,6 +9,7 @@
     <ImageView
         android:id="@+id/tvShowImage"
         android:layout_width="100dp"
+        android:transitionName="@string/transition_string"
         android:background="@android:color/darker_gray"
         android:layout_height="100dp" />
 
