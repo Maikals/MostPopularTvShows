@@ -78,7 +78,7 @@ abstract class BaseFragmentList : BaseFragment(), TvShowsListContract.View, OnLi
         }
     }
 
-    override fun getMostPopularTvShowsListOk(tvShowsList: List<BaseListItem>) {
+    override fun getTvShowsListOk(tvShowsList: List<BaseListItem>) {
         loading = false
         if (!tvShowsList.isEmpty()) {
             attachScrollListener()
@@ -94,7 +94,7 @@ abstract class BaseFragmentList : BaseFragment(), TvShowsListContract.View, OnLi
     }
 
 
-    override fun getMostPopularTvShowsListKo(errorMessage: String) {
+    override fun getTvShowsListKo(errorMessage: String) {
         loading = false
         emptyView.fillViews(EmptyViewModel.ERROR)
         hideRecyclerView()

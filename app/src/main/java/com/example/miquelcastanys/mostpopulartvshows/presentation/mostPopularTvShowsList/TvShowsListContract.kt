@@ -8,8 +8,8 @@ import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseView
 
 interface TvShowsListContract {
     interface View : BaseView<Presenter> {
-        fun getMostPopularTvShowsListOk(tvShowsList: List<BaseListItem>)
-        fun getMostPopularTvShowsListKo(errorMessage: String)
+        fun getTvShowsListOk(tvShowsList: List<BaseListItem>)
+        fun getTvShowsListKo(errorMessage: String)
     }
 
     interface Presenter : BasePresenter<Context, View> {

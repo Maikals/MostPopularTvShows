@@ -29,7 +29,7 @@ abstract class BaseTvShowListPresenter(override var isLastPage: Boolean = false)
 
         override fun onError(code: Int) {
             --currentPage
-            view?.get()?.getMostPopularTvShowsListKo("There is an error")
+            view?.get()?.getTvShowsListKo("There is an error")
             view?.get()?.showProgressBar(false)
         }
 
@@ -57,16 +57,16 @@ abstract class BaseTvShowListPresenter(override var isLastPage: Boolean = false)
     private fun manageResult(item: TvShowListResponse) {
         removeFooter()
         setIsLastPage(item.page, item.total_pages)
-        addResultToMostPopularTvShowList(TvShowsListMapper.turnInto(item))
+        addResultToTvShowList(TvShowsListMapper.turnInto(item))
         if (!isLastPage) addFooter()
-        view?.get()?.getMostPopularTvShowsListOk(tvShowsList)
+        view?.get()?.getTvShowsListOk(tvShowsList)
     }
 
     private fun addFooter() {
         tvShowsList.add(FooterListItem())
     }
 
-    private fun addResultToMostPopularTvShowList(tvShowListResult: ArrayList<BaseListItem>) {
+    private fun addResultToTvShowList(tvShowListResult: ArrayList<BaseListItem>) {
         tvShowsList.addAll(tvShowListResult)
     }
 
