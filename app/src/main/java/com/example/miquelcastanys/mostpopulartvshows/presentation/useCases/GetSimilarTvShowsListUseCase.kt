@@ -7,7 +7,7 @@ import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.T
 
 
 class GetSimilarTvShowsListUseCase(private val repository: MostPopularTvShowsSourceImpl) {
-    fun getAync(id: Int, apiKey: String, language: String, page: Int, callback: UseCaseCallback<TvShowListResponse>) {
+    fun getAsync(id: Int, apiKey: String, language: String, page: Int, callback: UseCaseCallback<TvShowListResponse>) {
         repository.getSimilarTvShowsList(id, apiKey, language, page, object : MostPopularTvShowsSource.GetSimilarTvShowsListCallback {
             override fun onSuccess(tvShowListResponse: TvShowListResponse) {
                 callback.onSuccess(tvShowListResponse)

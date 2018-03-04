@@ -50,6 +50,13 @@ class TvShowDetailFragment : BaseFragment(),
         overview.text = arguments.getString(TV_SHOW_DETAIL_OVERVIEW_EXTRA)
         presenter?.start()
         setRecyclerView()
+        setMoreOnClickListener()
+    }
+
+    private fun setMoreOnClickListener() {
+        more.setOnClickListener{
+            presenter?.openSimilarTvShowCompleteList()
+        }
     }
 
     private fun setRecyclerView() {

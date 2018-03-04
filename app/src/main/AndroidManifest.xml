@@ -3,7 +3,7 @@
     package="com.example.miquelcastanys.mostpopulartvshows">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".MostPopularTvShowsApplication"
@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.tvShowDetail.TvShowDetailActivity"></activity>
+        <activity android:name=".presentation.tvShowDetail.TvShowDetailActivity" />
+        <activity android:name=".presentation.similarTvShowsList.SimilarTvShowsListActivity"></activity>
     </application>
 
 </manifest>

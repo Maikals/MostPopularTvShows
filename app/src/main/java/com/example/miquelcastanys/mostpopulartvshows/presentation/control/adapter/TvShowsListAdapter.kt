@@ -13,8 +13,8 @@ import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presenta
 import com.example.miquelcastanys.mostpopulartvshows.presentation.mostPopularTvShowsList.TvShowViewHolder
 
 
-class MostPopularTvShowsListAdapter(tvShowList: List<BaseListItem>,
-                                    listener: OnListItemClickListener.View) :
+class TvShowsListAdapter(tvShowList: List<BaseListItem>,
+                         listener: OnListItemClickListener.View) :
         BaseTvShowListAdapter(tvShowList, listener) {
     override fun bindView(holder: BaseTvShowViewHolder, tvShowListItem: TvShowListItem) {
         (holder as? TvShowViewHolder)?.bindView(tvShowListItem)

@@ -18,5 +18,6 @@ interface TvShowDetailContract {
     interface Presenter : BasePresenter<Context, View> {
         fun getTvShowDetail()
         fun getSimilarTvShowList()
+        fun openSimilarTvShowCompleteList()
     }
 }

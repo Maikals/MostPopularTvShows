@@ -12,5 +12,8 @@
     <string name="overview">Overview</string>
     <string name="rating_title">Rating</string>
     <string name="similar_shows">Similar Shows</string>
+    <string name="more">More</string>
+    <string name="most_popular_tv_shows_title">Most Popular Tv Shows</string>
+    <string name="similar_to">Similar to</string>
 
 </resources>
