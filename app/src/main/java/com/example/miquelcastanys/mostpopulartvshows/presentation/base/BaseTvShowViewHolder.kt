@@ -21,7 +21,7 @@ abstract class BaseTvShowViewHolder(val view: View,
         loadImage(tvShowListItem.backdropImage)
     }
 
-    protected fun loadImage(imageUrl: String) {
+    private fun loadImage(imageUrl: String) {
         GlideApp
                 .with(view)
                 .load("${PresentationConstants.BASE_IMAGE_URL}$imageUrl")

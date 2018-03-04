@@ -6,7 +6,7 @@ import com.example.miquelcastanys.mostpopulartvshows.presentation.base.UseCaseCa
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.TvShowListResponse
 
 
-class MostPopularTvShowsListUseCase(val repository: MostPopularTvShowsSourceImpl) {
+class MostPopularTvShowsListUseCase(private val repository: MostPopularTvShowsSourceImpl) {
     fun getAsync(apiKey: String, language: String, page: Int, callback: UseCaseCallback<TvShowListResponse>) {
         repository.getMostPopularTvShowsList(apiKey,
                 language,

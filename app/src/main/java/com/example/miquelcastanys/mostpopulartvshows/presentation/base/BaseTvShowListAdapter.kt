@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import com.example.miquelcastanys.mostpopulartvshows.presentation.interfaces.OnListItemClickListener
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.presentation.TvShowListItem
-import com.example.miquelcastanys.mostpopulartvshows.presentation.mostPopularTvShowsList.TvShowViewHolder
 
 
 abstract class BaseTvShowListAdapter(private val tvShowList: List<BaseListItem>,

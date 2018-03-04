@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.tvShowDetail.TvShowDetailActivity" />
-        <activity android:name=".presentation.similarTvShowsList.SimilarTvShowsListActivity"></activity>
+        <activity android:name=".presentation.similarTvShowsList.SimilarTvShowsListActivity" />
     </application>
 
 </manifest>

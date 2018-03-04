@@ -6,7 +6,7 @@ import com.example.miquelcastanys.mostpopulartvshows.presentation.base.UseCaseCa
 import com.example.miquelcastanys.mostpopulartvshows.presentation.model.domain.TvShowDetailResponse
 
 
-class TvShowDetailUseCase(val repository: MostPopularTvShowsSourceImpl) {
+class TvShowDetailUseCase(private val repository: MostPopularTvShowsSourceImpl) {
     fun getAsync(id: Int, apiKey: String, language: String, callback: UseCaseCallback<TvShowDetailResponse>) {
         repository.getTvShowDetail(id, apiKey, language, object : MostPopularTvShowsSource.GetTvShowDetailCallback {
             override fun onSuccess(tvShowDetailResponse: TvShowDetailResponse) {
