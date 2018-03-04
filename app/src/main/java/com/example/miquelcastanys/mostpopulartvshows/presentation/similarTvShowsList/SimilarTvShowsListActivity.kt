@@ -20,6 +20,10 @@ class SimilarTvShowsListActivity : BaseActivityList() {
     override fun onCreate(savedInstanceState: Bundle?) {
         getExtraData()
         super.onCreate(savedInstanceState)
+        setToolbarBack()
+    }
+
+    private fun setToolbarBack() {
         if (supportActionBar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
@@ -28,7 +32,7 @@ class SimilarTvShowsListActivity : BaseActivityList() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
-            finish()
+            onBackPressed()
         }
         return super.onOptionsItemSelected(item)
     }
