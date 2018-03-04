@@ -14,7 +14,7 @@ abstract class BaseTvShowListAdapter(private val tvShowList: List<BaseListItem>,
     : RecyclerView.Adapter<RecyclerView.ViewHolder>(),
         OnListItemClickListener.Adapter {
 
-    private var lastPosition: Int = -1
+    protected var lastPosition: Int = -1
 
     companion object {
         private const val TV_SHOW_TYPE: Int = 0

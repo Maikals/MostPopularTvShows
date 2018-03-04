@@ -3,6 +3,7 @@ package com.example.miquelcastanys.mostpopulartvshows.presentation.control.adapt
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import com.example.miquelcastanys.mostpopulartvshows.R
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseFooterViewHolder
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseListItem
@@ -32,7 +33,11 @@ class SimilarTvShowsListAdapter(tvShowList: List<BaseListItem>
 
 
     override fun setAnimation(viewToAnimate: View, position: Int) {
-        //TODO add some fancy animation
+        if (position > lastPosition) {
+            val animation = AnimationUtils.loadAnimation(viewToAnimate.context, R.anim.slide_in_right)
+            viewToAnimate.startAnimation(animation)
+            lastPosition = position
+        }
     }
 
 }
