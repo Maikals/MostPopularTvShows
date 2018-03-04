@@ -3,6 +3,7 @@ package com.example.miquelcastanys.mostpopulartvshows.presentation.tvShowDetail
 import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
+import com.example.miquelcastanys.mostpopulartvshows.R
 import com.example.miquelcastanys.mostpopulartvshows.domain.source.MostPopularTvShowsSourceImpl
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseListItem
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.UseCaseCallback
@@ -89,6 +90,6 @@ class TvShowDetailPresenter(val id: Int) : TvShowDetailContract.Presenter {
         intent.putExtra(SimilarTvShowsListActivity.TV_SHOW_TITLE_EXTRA, tvShowDetail?.name)
         intent.putExtra(SimilarTvShowsListActivity.TV_SHOW_ID_EXTRA, id)
         context?.get()?.startActivity(intent)
-        (context?.get() as AppCompatActivity).overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+        (context?.get() as AppCompatActivity).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
     }
 }

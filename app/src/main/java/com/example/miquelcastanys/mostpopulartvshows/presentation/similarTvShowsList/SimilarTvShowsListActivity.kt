@@ -41,9 +41,9 @@ class SimilarTvShowsListActivity : BaseActivityList() {
         currentTag = SimilarTvShowsListFragment.TAG
     }
 
-    override fun onBackPressed() {
-        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-        super.onBackPressed()
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
 }
