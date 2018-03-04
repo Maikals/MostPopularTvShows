@@ -1,6 +1,7 @@
 package com.example.miquelcastanys.mostpopulartvshows.presentation.control.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.example.miquelcastanys.mostpopulartvshows.R
 import com.example.miquelcastanys.mostpopulartvshows.presentation.base.BaseFooterViewHolder
@@ -24,5 +25,9 @@ class SimilarTvShowsListAdapter(tvShowList: List<BaseListItem>
             TvShowViewHolder(LayoutInflater.from(parent?.context)
                     .inflate(R.layout.similar_tv_show_list_item, parent, false), this)
 
+
+    override fun setAnimation(viewToAnimate: View, position: Int) {
+        //TODO add some fancy animation
+    }
 
 }

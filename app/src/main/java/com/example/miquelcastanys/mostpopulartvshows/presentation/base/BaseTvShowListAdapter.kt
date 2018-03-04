@@ -52,7 +52,7 @@ abstract class BaseTvShowListAdapter(private val tvShowList: List<BaseListItem>,
         lastPosition = -1
     }
 
-    private fun setAnimation(viewToAnimate: View, position: Int) {
+    protected open fun setAnimation(viewToAnimate: View, position: Int) {
         // If the bound view wasn't previously displayed on screen, it's animated
         if (position > lastPosition) {
             val animation = AnimationUtils.loadAnimation(viewToAnimate.context, android.R.anim.slide_in_left)
